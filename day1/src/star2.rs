@@ -24,7 +24,6 @@ fn str_to_numbs(str: &str) -> Vec<i32> {
                 let s: String = temp.split_at(i).1.into_iter().collect();
                 if let Some(a) = to_num(s.as_str()) {
                     numbs.push(a);
-                    temp = vec![];
                     break;
                 }
             }
