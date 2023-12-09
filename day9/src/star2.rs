@@ -1,12 +1,10 @@
 pub fn star2(input: &str) -> i32 {
-    let numbers = input.lines().map(|l| l.split_whitespace().map(|n| n.parse::<i32>().unwrap()));
+    let numbers = input.lines().map(|l| l.split_whitespace().map(|n| n.parse::<i32>().unwrap()).rev());
     numbers.map(find_nex_num).sum()
 }
 
 fn find_nex_num(numbers: impl Iterator<Item = i32>) -> i32 {
-    let mut start_numbers = numbers.collect::<Vec<_>>();
-    start_numbers.reverse();
-    let mut numbers_steps = vec![start_numbers];
+    let mut numbers_steps = vec![numbers.collect::<Vec<_>>()];
     while !numbers_steps.last().unwrap().iter().fold(true, |acc, n| n == &0 && acc) {
         let last_numbers = numbers_steps.last().unwrap();
         let mut new_numbers = vec![];
